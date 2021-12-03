@@ -1,3 +1,5 @@
+CXXFLAGS := -std=c++17
+
 BUILD_DIR := build
 BIN_DIR := $(BUILD_DIR)/bin
 OBJ_DIR := $(BUILD_DIR)/obj
@@ -13,7 +15,7 @@ $(BIN_DIR): $(BUILD_DIR)
 	mkdir -p $(BIN_DIR)
 
 $(OBJ_FILES): $(SRC_FILES) $(OBJ_DIR)
-	g++ -c $(SRC_FILES) -Iproblems -I.
+	g++ -c $(SRC_FILES) -Iproblems -I. $(CXXFLAGS)
 	mv $(OBJ_FILES) $(OBJ_DIR)
 
 
