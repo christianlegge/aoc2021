@@ -4,10 +4,10 @@
 #include "problems.h"
 
 int main(int argc, char *argv[]) {
-	ProblemTwo p = ProblemTwo();
-	p.setInput("inputs/two.txt");
+	ProblemThree p = ProblemThree();
+	p.setInput("inputs/three.txt");
 
-	std::cout << "Part one answer: " << p.getOutputFirst() << std::endl; 
+//	std::cout << "Part one answer: " << p.getOutputFirst() << std::endl; 
 	std::cout << "Part two answer: " << p.getOutputSecond() << std::endl; 
 
 	return 0;
