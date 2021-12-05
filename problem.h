@@ -1,6 +1,7 @@
 #pragma once
 
 #include <fstream>
+#include <iostream>
 #include <string>
 
 class Problem
@@ -10,6 +11,7 @@ public:
 		this->input = input;
 		infile.open(input);
 		if (infile.fail()) {
+			std::cout << "Failed to open input file." << std::endl;
 			throw "Failed to open input file.";
 		}
 	}

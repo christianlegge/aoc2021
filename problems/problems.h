@@ -4,6 +4,7 @@
 #include "one.cpp"
 #include "two.cpp"
 #include "three.cpp"
+#include "four.cpp"
 
 std::unordered_map<int, std::string> numberWords = {
 	{0, "zero"},
