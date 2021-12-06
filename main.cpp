@@ -4,8 +4,8 @@
 #include "problems.h"
 
 int main(int argc, char *argv[]) {
-	ProblemFour p = ProblemFour();
-	p.setInput("inputs/four.txt");
+	ProblemSix p = ProblemSix();
+	p.setInput("inputs/six.txt");
 
 //	std::cout << "Part one answer: " << p.getOutputFirst() << std::endl; 
 	std::cout << "Part two answer: " << p.getOutputSecond() << std::endl; 
