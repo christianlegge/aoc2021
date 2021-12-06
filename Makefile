@@ -1,3 +1,5 @@
+.PHONY: all clean
+
 CXXFLAGS := -std=c++17
 
 BUILD_DIR := build
@@ -6,24 +8,23 @@ OBJ_DIR := $(BUILD_DIR)/obj
 
 BIN_NAME := aoc2021
 SRC_FILES := main.cpp $(wildcard problems/*.cpp)
-OBJ_FILES := $(subst problems/,,$(patsubst %.cpp,%.o,$(SRC_FILES)))
+OBJ_FILES := $(subst problems/,problems/,$(patsubst %.cpp,%.o,$(SRC_FILES)))
+OBJ_FILES := $(patsubst %,$(OBJ_DIR)/%,$(OBJ_FILES))
+BIN_FILE := $(BIN_DIR)/$(BIN_NAME)
 
-default: $(OBJ_FILES) $(BIN_DIR)
-	g++ -o $(BIN_DIR)/$(BIN_NAME) $(patsubst %, $(OBJ_DIR)/%, $(OBJ_FILES))
+all: $(BIN_FILE)
 
-$(BIN_DIR): $(BUILD_DIR)
+$(BIN_FILE): $(OBJ_FILES)
 	mkdir -p $(BIN_DIR)
+	g++ $< -o $@ -Iproblems -I.
 
-$(OBJ_FILES): $(SRC_FILES) $(OBJ_DIR)
-	g++ -c $(SRC_FILES) -Iproblems -I. $(CXXFLAGS)
-	mv $(OBJ_FILES) $(OBJ_DIR)
-
-
-$(OBJ_DIR): $(BUILD_DIR)
+$(OBJ_DIR)/%.o: %.cpp
 	mkdir -p $(OBJ_DIR)
+	g++ -c $< -o $@ -Iproblems -I.
 
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
+$(OBJ_DIR)/problems/%.o: problems/%.cpp
+	mkdir -p $(OBJ_DIR)/problems
+	g++ -c $< -o $@ -Iproblems -I.
 
 clean:
-	rm -rf $(BIN_DIR)/* $(OBJ_DIR)/*
+	rm -rf $(BUILD_DIR)/*
