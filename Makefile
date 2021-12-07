@@ -16,15 +16,15 @@ all: $(BIN_FILE)
 
 $(BIN_FILE): $(OBJ_FILES)
 	mkdir -p $(BIN_DIR)
-	g++ $< -o $@ -Iproblems -I.
+	g++ $^ -o $@ -Iproblems -I.
 
 $(OBJ_DIR)/%.o: %.cpp
 	mkdir -p $(OBJ_DIR)
-	g++ -c $< -o $@ -Iproblems -I.
+	g++ -c $^ -o $@ -Iproblems -I.
 
 $(OBJ_DIR)/problems/%.o: problems/%.cpp
 	mkdir -p $(OBJ_DIR)/problems
-	g++ -c $< -o $@ -Iproblems -I.
+	g++ -c $^ -o $@ -Iproblems -I.
 
 clean:
 	rm -rf $(BUILD_DIR)/*
